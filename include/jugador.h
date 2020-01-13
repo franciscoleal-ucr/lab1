@@ -10,6 +10,7 @@
 using namespace std; 
 
     //lo que se ocupa preguntar en otra clase tiene que retornar una variable en su metodo, variables privadas no se pueden usar entre metodos
+
 class Jugador{
     public:
         /** Incribe a un jugador al juego*/
@@ -48,62 +49,4 @@ class Jugador{
         int _CuentaDeDinero;//cantidad de dinero que posee el Jugador
 
 
-};
-
-class Casilla{
-    public:
-      /** Da el nombre respectivo a la casilla*/
-        void DaNombreALaCasillayNumero(string nombre, int numero);
-        string nombredecasilla;
-        int numero;
-
-      /** Va a definir la casilla como que aun no tiene dueño*/
-       void InicializarPropietario();
-       bool propietario;
-
-      /** Va a definir cuanto vale la casilla en particular*/
-       void InicializarCosto();
-       int valordepropiedad;
-
-      /** Va a definir el valor de multa a cobrar por cada jugador que caiga en la casilla*/
-       void InicializarMulta();
-       int multa;/**4 casillas tienen multa SIEMPRE (las 4 casillas de impuestos)
-       por las otras hay que preguntar si existe dueño, sino la multa no se aplica*/
-
-     /** Va a definir que ahora si tiene propietario la casilla
-         pasa a true la variable _Propietario */
-      void AgregarPropietario();
-
-};
-
-class TableroControl{
-   public:
-    /** Va a setear cuantos jugadores van a jugar (max 4)*/
-     void ConocerCantidadDeJugadores(int cantidad);//recibe el entero desde el main
-     int cantidaddejugadores;
-
-    /** Va a inicializar la posicion de los jugadores*/
-     void IniciarPosiciones();
-
-     /** Va a imprimir el mapa para visualizar las posiciones*/
-     void ImprimirTablero();
-
-    /** Va a establecer el orden en que los jugadores jugaran*/
-     string InicializarOrdenDeTurno();//podria devolver un vector indicando el orden de los turnos
-
-    /** Va a setear las posiciones de los jugadores respecto a sus cambios de lugar*/
-     void SetearPosiciones();
-
-    /** Va a setear de quien es el turno*/
-     string PreguntarDeQuienEsElTurno(); //retorna unicamente la ficha que indica al jugador que va al turno
-
-    /** Va a setear la cantidad de casillas que se va a mover el jugador*/
-     int TirarDados();
-     int dados;
-
-
-
-   private:
-    int matrixcasillas[36][36];
-    int matrixjugadores[36][36];
 };

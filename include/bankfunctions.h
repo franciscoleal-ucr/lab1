@@ -10,7 +10,6 @@
 using namespace std; 
 
     //lo que se ocupa preguntar en otra clase tiene que retornar una variable en su metodo, variables privadas no se pueden usar entre metodos
-
 class Jugador{
     public:
         /** Incribe a un jugador al juego*/
@@ -28,9 +27,6 @@ class Jugador{
         void RebajarDineroPorMulta(int multa);
 
         /** Rebaja el monto que vale la casilla al jugador que decidio comprar */
-        /** Devuelve si el jugador esta o no endeudado, si esta enduedado pierde y se elimina del tablero*/
-        /** si devuelve 1 significa que puede comprar
-            si devuelve 2 significa que no le alcanza para comprar  */
         void RebajarDineroPorCompra(int valorpropiedad);
 
         /** Suma el dinero que le cobra al usuario multado*/
@@ -39,13 +35,14 @@ class Jugador{
        /** Suma cierto monto por motivos de que pasa por el inicio nuevamente */
         void SumarDineroPorPasarPorInicio();
 
-        /** Permite conocer la posicion del jugador en el tablero*/
-        /** Devuelve el numero de casilla en el que resultara despues de sumarle a su posicion el valordelImpuesto
-        de los dados*/
+        /** Permite resetear la posicion del jugador en el tablero*/
         void CambiarPosicion(int dados);
         int Posicion;//posicion del jugador en el tablero
+        
+        /**Nos permitira obtener el nombre del jugador*/
+        string DaNombre();
 
-    private:
+
         int _CuentaDeDinero;//cantidad de dinero que posee el Jugador
 
 
@@ -55,56 +52,38 @@ class Casilla{
     public:
       /** Da el nombre respectivo a la casilla*/
         void DaNombreALaCasillayNumero(string nombre, int numero);
-        string nombredecasilla;
-        int numero;
+        string nombredecasilla;//nombre de la casilla
+        int numero;//numero de la casilla
 
       /** Va a definir la casilla como que aun no tiene dueño*/
        void InicializarPropietario();
-       bool propietario;
+       bool propietario;//nos dice si existe dueno o no
 
       /** Va a definir cuanto vale la casilla en particular*/
-       void InicializarCosto();
-       int valordepropiedad;
+       void InicializarCosto(int costo);
+       int valordepropiedad;//cuanto cuesta la propiedad
 
       /** Va a definir el valor de multa a cobrar por cada jugador que caiga en la casilla*/
-       void InicializarMulta();
+       void InicializarMulta(int valormulta);
        int multa;/**4 casillas tienen multa SIEMPRE (las 4 casillas de impuestos)
        por las otras hay que preguntar si existe dueño, sino la multa no se aplica*/
 
      /** Va a definir que ahora si tiene propietario la casilla
          pasa a true la variable _Propietario */
-      void AgregarPropietario();
+      void AgregarPropietario(string name);
+      string nombredelpropietario;//nombre del propietario
 
 };
 
 class TableroControl{
    public:
-    /** Va a setear cuantos jugadores van a jugar (max 4)*/
-     void ConocerCantidadDeJugadores(int cantidad);//recibe el entero desde el main
-     int cantidaddejugadores;
-
+ 
     /** Va a inicializar la posicion de los jugadores*/
-     void IniciarPosiciones();
+     int IniciarPosiciones();
 
-     /** Va a imprimir el mapa para visualizar las posiciones*/
-     void ImprimirTablero();
-
-    /** Va a establecer el orden en que los jugadores jugaran*/
-     string InicializarOrdenDeTurno();//podria devolver un vector indicando el orden de los turnos
-
-    /** Va a setear las posiciones de los jugadores respecto a sus cambios de lugar*/
-     void SetearPosiciones();
-
-    /** Va a setear de quien es el turno*/
-     string PreguntarDeQuienEsElTurno(); //retorna unicamente la ficha que indica al jugador que va al turno
-
+  
     /** Va a setear la cantidad de casillas que se va a mover el jugador*/
      int TirarDados();
-     int dados;
+          
 
-
-
-   private:
-    int matrixcasillas[36][36];
-    int matrixjugadores[36][36];
 };
